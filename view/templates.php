@@ -1,6 +1,6 @@
 <?php
 // Здесь формируется весь html, включая поднимаемые чеерз ajax.
-class templates {
+class templates extends prepareData {
     // Шаблон для head
     public function header() {
          ?>
@@ -9,7 +9,6 @@ class templates {
                 <meta content="width=device-width, initial-scale=1" name="viewport" />
                 <title></title>
                 <link rel="stylesheet" href="./template/css/template.css">
-                <script src="./template/js/jquery.min.js"></script>
             </head>
             <body>
                 <div class="main">
@@ -28,14 +27,16 @@ class templates {
         echo '<div class="tariff_rows">';
         foreach ($page_data as $key => $value) { ?>
             <div class="tariff_row">
-                <h2>Тариф "<?=$value['title']?>"</h2>
-                <div class="go_to" data-ajax="<?=$value['children']?>" data-parent="<?=$value['children']?>">
-                    <div class="speed"><div class="label<?=$value['class']?>"><?=$value['speed']?> Мбит/с</div></div>
-                    <div class="price_diapason"><?=$value['price_diapason']?>  <span class="rubl">o</span>/мес</div>
-                    <div class="free_options"><?=$value['free_options']?></div>
+                <h2>Тариф "<?php echo $value['title'] ;?>"</h2>
+                <div class="go_to" data-ajax="<?php echo $value['children'] ;?>" data-parent="<?php echo $value['children'] ;?>">
+                    <div class="speed"><div class="label<?php echo $value['class'] ;?>"><?php echo $value['speed'] ;?> Мбит/с</div></div>
+                    <div class="price_per_month"><?php echo $value['price_per_month'] ;?>  ₽/мес</div>
+                    <?php if (!empty($value['free_options'])) { ?>
+                    <div class="free_options"><?php echo $value['free_options'] ;?></div>
+                    <?php } ?>
                 </div>
                 <div class="link">
-                    <a target="_blank" href="<?=$value['link']?>">Узнать подробнее на сайте www.sknt.ru</a>
+                    <a target="_blank" href="<?php echo $value['link'] ;?>">Узнать подробнее на сайте www.sknt.ru</a>
                 </div>
             </div>
         <? }
@@ -47,21 +48,17 @@ class templates {
         foreach ($page_data as $key => $value) { ?>
             <?php if ($key == 0) {?>
                 <header class="tariff_head go_to" data-ajax="main">
-                    <h1>Тариф "<?=$value['title']?>"</h1>
+                    <h1>Тариф "<?php echo $value['title'] ;?>"</h1>
                 </header>
                  <div class="tariff_rows">
             <?php } ?>
             <div class="tariff_row">
-                <?php if (!empty($value['pay_period'])) { ?>
-                    <h2><?=$value['pay_period']?></h2>
-                <?php } else { ?>
-                    <h2>1 месяц</h2>
-                <?php } ?>
-                <div class="go_to" data-ajax="<?=$value['ID']?>" data-parent="<?=$_POST['data']?>">
-                    <div class="price_per_month"><?=$value['price_per_month']?>  <span class="rubl">o</span>/мес</div>
-                    <div class="price">Разовый платёж - <?=$value['price']?>  <span class="rubl">o</span>
+                <h2><?php echo $value['pay_period'] ;?></h2>
+                <div class="go_to" data-ajax="<?php echo $value['ID'] ;?>" data-parent="<?php echo $this->postItem('data') ;?>">
+                    <div class="price_per_month"><?php echo $value['price_per_month'] ;?>  ₽/мес</div>
+                    <div class="price">Разовый платёж – <?php echo $value['price'] ;?>  ₽
                     <?php if ($value['discount'] != 0) { ?>
-                        <br>Скидка - <?=$value['discount']?>  <span class="rubl">o</span>
+                        <br>Скидка – <?php echo $value['discount'] ;?>  ₽
                     <?php } ?>
                     </div>
                 </div>
@@ -72,24 +69,24 @@ class templates {
     // Шаблон третьего экрана
     public function selectTariff($page_data) {
         foreach ($page_data as $key => $value) { ?>
-            <header class="tariff_head go_to" data-ajax="<?=$_POST['parent']?>">
+            <header class="tariff_head go_to" data-ajax="<?php echo $this->postItem('parent') ;?>">
                 <h1>Выбор тарифа</h1>
             </header>
-            <div class="tariff_row">
-                <h2>Тариф "<?=$value['title']?>"</h2>
+            <div class="tariff_row third_page">
+                <h2>Тариф "<?php echo $value['title'] ;?>"</h2>
                 <div class="tariff_select">
                     <?php if (!empty($value['pay_period'])) { ?>
-                        <div class="price_per_month">Период оплаты - <?=$value['pay_period']?><br>
-                            <?=$value['price_per_month']?>  <span class="rubl">o</span>/мес</div>
+                        <div class="price_per_month">Период оплаты – <?php echo $value['pay_period'] ;?><br>
+                            <?php echo $value['price_per_month'] ;?>  ₽/мес</div>
                     <?php } else { ?>
-                        <div class="price_per_month">Период оплаты - 1 месяц<br>
-                            <?=$value['price_per_month']?>  <span class="rubl">o</span>/мес</div>
+                        <div class="price_per_month">Период оплаты – 1 месяц<br>
+                            <?php echo $value['price_per_month'] ;?>  ₽/мес</div>
                     <?php } ?>
 
-                    <div class="price">Разовый платёж - <?=$value['price']?>  <span class="rubl">o</span><br>
-                    Cо счёта спишется - <?=$value['price']?>  <span class="rubl">o</span></div>
-                    <div class="new_payday">Вступит в силу - сегодня<br>
-                    Дата следующего платежа - <?=$value['new_payday']?></div>
+                    <div class="price">Разовый платёж – <?php echo $value['price'] ;?>  ₽<br>
+                    Cо счёта спишется – <?php echo $value['price'] ;?>  ₽</div>
+                    <div class="new_payday">Вступит в силу – сегодня<br>
+                    Дата следующего платежа – <?php echo $value['new_payday'] ;?></div>
                     <div class="select_button">
                         <button>Выбрать</button>
                     </div>

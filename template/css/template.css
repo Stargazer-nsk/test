@@ -1,37 +1,27 @@
-@font-face {
-    font-family: ALSRubl;
-    font-weight: 400;
-    font-style: normal;
-    src: url(../fonts/ALSRubl.otf) format("opentype");
-}
-
-h1 {
-    color: #000 !important;
-    font-size: 1em !important;
-    text-align: center;
+html {
+    font-size: 3.5vw;
+    line-height: 1.3;
 }
 
 body {
     margin: 0;
-    font-size: 16px;
-    color: #2e3a41;
+    color: #4d575d;
     background: #efeff4;
-    font-family: 'Segoe UI', 'Helvetica Neue', 'Robot', 'Ubuntu';
+    font-family: Arial, 'Helvetica Neue', Roboto, Ubuntu, sans-serif;
 }
 
 h1, h2 {
-    font-size: 1.5em;
+    font-size: 1em;
     color: #7cbe21;
-    font-weight: 500;
-    line-height: 70px;
-    height: 70px;
+    font-weight: bold;
     margin: 0;
-    border-bottom: 2px solid #d8d7da;
+    border-bottom: 1px solid #d8d7da;
+    line-height: 3.3;
 }
 
-.rubl {
-    font-family: ALSRubl;
-    font-size: .8em;
+h1 {
+    color: #000 !important;
+    text-align: center;
 }
 
 .main {
@@ -47,8 +37,8 @@ h1, h2 {
 
 .tariff_rows {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2vw;
+    grid-template-columns: 1fr;
+    grid-gap: 5.3vw;
     width: 100%;
 }
 
@@ -57,53 +47,55 @@ h1, h2 {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    border-top: 2px solid #d8d7da;
-    border-bottom: 2px solid #d8d7da;
+    border-top: 1px solid #d8d7da;
+    border-bottom: 1px solid #d8d7da;
     flex-wrap: wrap;
     width: 100%;
 }
 
 .tariff_row > * {
-    width: calc(100% - 25px);
+    width: 96%;
 }
 
 .select_button {
-    padding: 15px 0 10px;
+    padding: 2.1vw 0 1.7vw;
     border-top: 1px solid #d8d7da;
 }
 
 .select_button button {
-    width: calc(100% - 25px);
+    width: 96%;
     background: #7cbe21;
     color: #fff;
     border: 0;
-    line-height: 70px;
     font-size: .9em;
+    cursor: pointer;
+    line-height: 3.1;
 }
 
 .link {
-    min-height: 70px;
-    padding-top: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-top: 2px solid #d8d7da;
+    border-top: 1px solid #d8d7da;
     align-self: flex-end;
 }
 
 .link a {
-    font-size: 1.3em;
+    font-size: 1em;
     color: #007aff;
     text-transform: lowercase;
     text-decoration: none;
+    line-height: 3.4;
 }
 
-.go_to,
-.tariff_select{
-    font-size: 1.5em;
-    line-height: 60px;
+.go_to, .tariff_select {
+    font-size: 1em;
     background: url(../img/angle-right.svg) 94% center no-repeat;
     background-size: 3% !important;
+}
+
+.go_to {
+    cursor: pointer;
 }
 
 .tariff_head.go_to {
@@ -117,25 +109,20 @@ h1, h2 {
     background: none;
 }
 
-.price_per_month {
-    font-weight: 500;
+.tariff_select .price_per_month {
     line-height: 1.3;
-    padding: 10px 0;
+    padding: 3vw 0;
 }
 
-.price,
-.new_payday{
-    line-height: 1.3;
-    min-height: 36px;
-    font-size: 0.9em;
-    padding-bottom: 10px;
+.price, .new_payday {
+    font-size: .9em;
+    padding-bottom: 3%;
 }
 
 .speed {
     font-weight: bold;
-    padding-top: 13px;
-    line-height: 55px;
-    height: 55px;
+    padding-top: 2%;
+    line-height: 2.5;
     color: #ffffff;
     position: relative;
 }
@@ -146,12 +133,11 @@ h1, h2 {
 
 .speed > .label {
     position: relative;
-    padding-left: 25px;
-    left: -25px;
+    padding-left: 4%;
+    left: -4%;
     height: 100%;
     width: 30%;
     background: #000000;
-    min-width: 185px;
 }
 
 .speed > .label.earth {
@@ -166,32 +152,70 @@ h1, h2 {
     background: #e74807;
 }
 
-.price_diapason {
-    color: #4d575d;
-    font-weight: 500;
+.price_per_month {
+    font-weight: bold;
+    line-height: 2.9;
 }
 
 .free_options {
-    color: #4d575d;
-    font-size: 0.9em;
-    padding-bottom: 13px;
-    line-height: 1.2;
-    font-weight: 300;
+    font-size: 0.84em;
+    padding-bottom: 2%;
+    line-height: 1.6;
+    margin-top: -.7%;
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 641px) {
+    .main {
+        font-size: .6rem;
+    }
+
     .tariff_rows {
         grid-template-columns: 1fr 1fr;
-        grid-gap: 5vw;
+        grid-gap: 34px;
+    }
+
+    .go_to {
+        min-height: calc(100% - 14.1vw);
+        display: flex;
+        flex-direction: column;
     }
 
     .tariff_head.go_to {
-        margin-bottom: 5vw;
+        margin-bottom: 34px;
+    }
+
+    .tariff_row.third_page {
+        width: calc((100% - 34px) / 2);
+        margin: 0 auto;
+    }
+
+    .tariff_select .price_per_month {
+        padding: 13px 0;
+    }
+
+    .price, .new_payday {
+        padding-bottom: 13px;
+    }
+
+    .select_button {
+        padding: 10px 0 8px;
     }
 }
 
-@media (max-width: 640px) {
+@media (min-width: 1024px) {
+    .main {
+        font-size: .3rem;
+    }
+
+    .go_to {
+        min-height: calc(100% - 7.1vw);
+    }
+
     .tariff_rows {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .tariff_row.third_page {
+        width: calc((100% - 68px) / 3);
     }
 }

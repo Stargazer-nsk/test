@@ -2,11 +2,15 @@
 include_once 'templates.php';
 include_once 'selectPage.php';
 
-if ($_POST['data'] == 'main') {
+
+$template = new templates;
+$data = $template->postItem('data');
+
+if ($data == 'main') {
     $page = 1;
-} elseif ((!empty($_POST['data'])) && (substr_count($_POST['data'], ',') != 0)) {
+} elseif ((!empty($data)) && (substr_count($data, ',') != 0)) {
     $page = 2;
-} elseif (!empty($_POST['data'])) {
+} elseif (!empty($data)) {
     $page = 3;
 } else {
     $page = 0;
@@ -14,7 +18,6 @@ if ($_POST['data'] == 'main') {
 
 $select_page = new selectPage;
 $page_data = $select_page->select($page, $tariffs);
-$template = new templates;
 
 switch ($page) {
     case 0:

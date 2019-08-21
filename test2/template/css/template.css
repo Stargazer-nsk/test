@@ -180,6 +180,10 @@ h1 {
         flex-direction: column;
     }
 
+    .go_to.second_page {
+        min-height: calc(100% - 7.03vw);
+    }
+
     .tariff_head.go_to {
         margin-bottom: 34px;
     }
@@ -209,6 +213,10 @@ h1 {
 
     .go_to {
         min-height: calc(100% - 7.1vw);
+    }
+
+    .go_to.second_page {
+        min-height: calc(100% - 3.51vw);
     }
 
     .tariff_rows {

@@ -54,7 +54,7 @@ class templates extends prepareData {
             <?php } ?>
             <div class="tariff_row">
                 <h2><?php echo $value['pay_period'] ;?></h2>
-                <div class="go_to" data-ajax="<?php echo $value['ID'] ;?>" data-parent="<?php echo $this->postItem('data') ;?>">
+                <div class="go_to second_page" data-ajax="<?php echo $value['ID'] ;?>" data-parent="<?php echo $this->postItem('data') ;?>">
                     <div class="price_per_month"><?php echo $value['price_per_month'] ;?>  ₽/мес</div>
                     <div class="price">Разовый платёж – <?php echo $value['price'] ;?>  ₽
                     <?php if ($value['discount'] != 0) { ?>
